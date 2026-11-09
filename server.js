@@ -98,6 +98,26 @@ app.get('/api/track/:sid', (req, res) => {
   res.json(db.trackers.filter(t => t.sid === req.params.sid));
 });
 
+// checklist: required documents for a scheme
+app.get('/api/checklist', (req, res) => {
+  const { scheme } = req.query;
+  if (!scheme) return res.status(400).json({ error: 'scheme query param required' });
+  try {
+    const schemes = JSON.parse(fs.readFileSync(path.join(__dirname, 'schemes.json'), 'utf8'));
+    const s = schemes.find(x => x.id === scheme);
+    if (!s) return res.status(404).json({ error: 'scheme not found' });
+    const docs = s.docs || [
+      'Identity proof (Aadhaar/PAN/Passport)',
+      'Address proof',
+      'Passport-size photo',
+      'Bank account details'
+    ];
+    res.json({ scheme: s.id, name: s.name, documents: docs });
+  } catch (e) {
+    res.status(500).json({ error: String(e) });
+  }
+});
+
 // public impact stats (proven-impact judging criterion)
 app.get('/api/stats', (req, res) => {
   const db = loadDb();
