@@ -59,6 +59,7 @@ a { color:var(--navy); }
 <footer>Code for a Billion 2026 · <a href="/stats">live impact stats</a> · open source (MIT)</footer>
 <script>
 let lang = 'hi', session = null, history = [];
+const SRC = new URLSearchParams(location.search).get('src') === 'test' ? 'test' : 'web';
 const T = {
   hi: {
     tagline: 'हर कामगार का क्रेडिट साथी - सही लोन, सही दस्तावेज़, सही रास्ता',
@@ -115,7 +116,7 @@ async function send(text) {
   history.push({ role: 'user', content: text });
   const thinking = add('ria', '...');
   try {
-    const r = await fetch('/api/chat', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ message: text, history, lang, session }) });
+    const r = await fetch('/api/chat', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ message: text, history, lang, session, src: SRC }) });
     const j = await r.json();
     thinking.remove();
     if (j.error) { add('ria', 'Error: ' + j.error); return; }
