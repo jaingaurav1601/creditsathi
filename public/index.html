@@ -76,6 +76,13 @@ const T = {
   }
 };
 const log = document.getElementById('log');
+function mdLite(t) {
+  let h = (t || '').replace(/</g, '&lt;');
+  h = h.replace(/\*\*([^*]+)\*\*/g, '<b>$1</b>');
+  h = h.replace(/^- (.+)$/gm, '&bull; $1');
+  h = h.replace(/\n/g, '<br>');
+  return h;
+}
 function add(cls, html) {
   const d = document.createElement('div');
   d.className = 'msg ' + cls; d.innerHTML = html;
@@ -113,7 +120,7 @@ async function send(text) {
     thinking.remove();
     if (j.error) { add('ria', 'Error: ' + j.error); return; }
     session = j.session;
-    add('ria', (j.reply || '').replace(/</g, '&lt;'));
+    add('ria', mdLite(j.reply));
     history.push({ role: 'assistant', content: j.reply });
     speak(j.reply);
     (j.matches || []).forEach(schemeCard);

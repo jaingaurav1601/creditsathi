@@ -5,8 +5,8 @@
     "hi_name": "पीएम स्वनिधि",
     "for": "Street vendors and hawkers",
     "for_hi": "स्ट्रीट वेंडर और ठेला-फेरी वाले",
-    "amount": "₹10,000 first loan; ₹20,000 and ₹50,000 on repayment",
-    "amount_hi": "पहला लोन ₹10,000; चुकाने पर ₹20,000 और ₹50,000",
+    "amount": "₹15,000 first loan; ₹25,000 second; ₹50,000 third (enhanced 2025; scheme extended to March 2030)",
+    "amount_hi": "पहला लोन ₹15,000; दूसरा ₹25,000; तीसरा ₹50,000 (2025 में बढ़ी राशि; स्कीम मार्च 2030 तक बढ़ी)",
     "rules": {
       "occupation": [
         "street_vendor",
@@ -29,7 +29,8 @@
       "मोबाइल नंबर"
     ],
     "apply": "pmsvanidhi.mohua.gov.in or nearest bank / CSC",
-    "notes": "Collateral-free. 7% interest subsidy. Digital cashback on transactions."
+    "notes": "Collateral-free. 7% interest subsidy. Digital cashback on transactions.",
+    "source": "pib.gov.in PressRelease PRID 2161157 (Cabinet approval, June 2025)"
   },
   {
     "id": "mudra_shishu",
@@ -65,7 +66,8 @@
       "6 महीने का बैंक स्टेटमेंट"
     ],
     "apply": "Any bank, NBFC-MFI, or udyamimitra.in",
-    "notes": "No collateral. Interest depends on lender (usually 9-12%)."
+    "notes": "No collateral. Interest depends on lender (usually 9-12%).",
+    "source": "mudra.gov.in"
   },
   {
     "id": "mudra_kishore",
@@ -102,7 +104,46 @@
       "6-12 महीने का बैंक स्टेटमेंट"
     ],
     "apply": "Banks / NBFCs / udyamimitra.in",
-    "notes": "Collateral-free up to ₹10 lakh under CGTMSE cover."
+    "notes": "Collateral-free up to ₹10 lakh under CGTMSE cover.",
+    "source": "mudra.gov.in"
+  },
+  {
+    "id": "mudra_tarun",
+    "name": "PM MUDRA - Tarun",
+    "hi_name": "पीएम मुद्रा - तरुण",
+    "for": "Established micro businesses needing ₹5 lakh to ₹20 lakh",
+    "for_hi": "स्थापित छोटे व्यवसाय - ₹5 लाख से ₹20 लाख तक",
+    "amount": "₹5,00,001 to ₹20,00,000 (limit raised from ₹10 lakh to ₹20 lakh in Budget 2024)",
+    "amount_hi": "₹5,00,001 से ₹20,00,000 तक (बजट 2024 में सीमा ₹10 लाख से बढ़कर ₹20 लाख)",
+    "rules": {
+      "occupation": [
+        "shop",
+        "service",
+        "vendor",
+        "artisan",
+        "other_business"
+      ],
+      "min_age": 18,
+      "min_vintage_months": 12,
+      "min_loan": 500001,
+      "max_loan": 2000000
+    },
+    "docs": [
+      "Aadhaar + PAN",
+      "Business address proof",
+      "Udyam registration",
+      "Bank statement 6-12 months",
+      "Last year turnover estimate"
+    ],
+    "docs_hi": [
+      "आधार + पैन",
+      "दुकान का पता प्रूफ",
+      "उद्यम रजिस्ट्रेशन",
+      "6-12 महीने का बैंक स्टेटमेंट"
+    ],
+    "apply": "Banks / NBFCs / udyamimitra.in",
+    "notes": "Collateral-free up to ₹10 lakh under CGTMSE cover.",
+    "source": "mudra.gov.in; Union Budget 2024-25"
   },
   {
     "id": "kcc",

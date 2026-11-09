@@ -44,12 +44,16 @@ function parseProfile(text) {
 function stripProfile(text) { return (text || '').replace(/<profile>[\s\S]*?<\/profile>/, '').trim(); }
 
 app.post('/api/chat', async (req, res) => {
-  const { message, history = [], lang = 'hi', session = null } = req.body || {};
+  const { message, history = [], lang = 'hi', session = null, src = 'web' } = req.body || {};
   if (!message) return res.status(400).json({ error: 'message required' });
   const db = loadDb();
   const sid = session || `s${Date.now()}`;
+  // Reply language follows the user's message, not the UI toggle:
+  const msgLang = /[\u0900-\u097F]/.test(message) ? 'hi' : 'en';
+  const effLang = msgLang || lang;
+  const srcTag = src === 'test' ? 'test' : 'web';
   try {
-    const sys = { role: 'system', content: buildSystemPrompt(lang) };
+    const sys = { role: 'system', content: buildSystemPrompt(effLang) };
     const msgs = [sys, ...history.slice(-12), { role: 'user', content: message }];
     let reply = await llm(msgs);
     let profile = null, matches = [];
@@ -57,16 +61,16 @@ app.post('/api/chat', async (req, res) => {
       profile = parseProfile(reply);
       reply = stripProfile(reply);
       if (profile) {
-        matches = matchSchemes(profile).map(m => checklistFor(m.scheme, profile, lang));
-        event(db, 'profile', { sid, profile, matched: matches.map(m => m.scheme) });
+        matches = matchSchemes(profile).map(m => checklistFor(m.scheme, profile, effLang));
+        event(db, 'profile', { sid, src: srcTag, profile, matched: matches.map(m => m.scheme) });
       }
     } else {
-      reply = lang === 'hi'
+      reply = effLang === 'hi'
         ? 'अभी मेरा दिमाग़ (AI) उपलब्ध नहीं है। थोड़ी देर में फिर कोशिश करें।'
         : 'My AI brain is unavailable right now. Please try again in a bit.';
     }
-    event(db, 'chat', { sid, lang });
-    if (!db.sessions.find(s => s.sid === sid)) db.sessions.push({ sid, started: new Date().toISOString(), lang });
+    event(db, 'chat', { sid, lang: effLang, src: srcTag });
+    if (!db.sessions.find(s => s.sid === sid)) db.sessions.push({ sid, started: new Date().toISOString(), lang: effLang, src: srcTag });
     saveDb(db);
     res.json({ reply, session: sid, matches: matches.length ? matches : undefined });
   } catch (e) {
@@ -97,18 +101,25 @@ app.get('/api/track/:sid', (req, res) => {
 // public impact stats (proven-impact judging criterion)
 app.get('/api/stats', (req, res) => {
   const db = loadDb();
-  const profiles = db.events.filter(e => e.type === 'profile');
+  // Honesty rule: internal test/development traffic is tagged src=test and
+  // EXCLUDED from public impact numbers. Only real web usage counts.
+  const real = db.events.filter(e => e.src !== 'test');
+  const realSessions = db.sessions.filter(s => s.src !== 'test');
+  const profiles = real.filter(e => e.type === 'profile');
   const schemeCounts = {};
   for (const p of profiles) for (const s of p.matched || []) schemeCounts[s] = (schemeCounts[s] || 0) + 1;
+  const realSids = new Set(realSessions.map(s => s.sid));
+  const realTrackers = db.trackers.filter(t => realSids.has(t.sid));
   res.json({
-    sessions: db.sessions.length,
-    chats: db.events.filter(e => e.type === 'chat').length,
+    sessions: realSessions.length,
+    chats: real.filter(e => e.type === 'chat').length,
     profilesBuilt: profiles.length,
-    applicationsTracked: db.trackers.length,
-    trackerSteps: db.trackers.reduce((n, t) => n + t.steps.length, 0),
+    applicationsTracked: realTrackers.length,
+    trackerSteps: realTrackers.reduce((n, t) => n + t.steps.length, 0),
     schemeMatches: schemeCounts,
-    firstEvent: db.events[0]?.ts || null,
-    latestEvent: db.events[db.events.length - 1]?.ts || null,
+    firstEvent: real[0]?.ts || null,
+    latestEvent: real[real.length - 1]?.ts || null,
+    methodology: 'Counts real visitor sessions only; internal test and development traffic (tagged separately) is excluded. Updated live.',
   });
 });
 
