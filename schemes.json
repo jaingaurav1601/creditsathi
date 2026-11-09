@@ -1,0 +1,226 @@
+[
+  {
+    "id": "pm_svanidhi",
+    "name": "PM SVANidhi",
+    "hi_name": "पीएम स्वनिधि",
+    "for": "Street vendors and hawkers",
+    "for_hi": "स्ट्रीट वेंडर और ठेला-फेरी वाले",
+    "amount": "₹10,000 first loan; ₹20,000 and ₹50,000 on repayment",
+    "amount_hi": "पहला लोन ₹10,000; चुकाने पर ₹20,000 और ₹50,000",
+    "rules": {
+      "occupation": [
+        "street_vendor",
+        "hawker"
+      ],
+      "min_age": 18,
+      "min_loan": 0,
+      "max_loan": 50000
+    },
+    "docs": [
+      "Aadhaar",
+      "Vending certificate or letter of recommendation from ULB/TVC",
+      "Bank account",
+      "Mobile number"
+    ],
+    "docs_hi": [
+      "आधार",
+      "वेंडिंग सर्टिफिकेट या ULB/TVC से अनुशंसा पत्र",
+      "बैंक खाता",
+      "मोबाइल नंबर"
+    ],
+    "apply": "pmsvanidhi.mohua.gov.in or nearest bank / CSC",
+    "notes": "Collateral-free. 7% interest subsidy. Digital cashback on transactions."
+  },
+  {
+    "id": "mudra_shishu",
+    "name": "PM MUDRA - Shishu",
+    "hi_name": "पीएम मुद्रा - शिशु",
+    "for": "Micro businesses, shops, service units needing up to ₹50,000",
+    "for_hi": "छोटे दुकानदार, सेवा यूनिट - ₹50,000 तक",
+    "amount": "up to ₹50,000",
+    "amount_hi": "₹50,000 तक",
+    "rules": {
+      "occupation": [
+        "shop",
+        "service",
+        "vendor",
+        "artisan",
+        "gig",
+        "other_business"
+      ],
+      "min_age": 18,
+      "min_loan": 0,
+      "max_loan": 50000
+    },
+    "docs": [
+      "Aadhaar",
+      "PAN",
+      "Business proof or plan (quotation of machinery/items)",
+      "Bank statement 6 months"
+    ],
+    "docs_hi": [
+      "आधार",
+      "पैन",
+      "बिज़नेस प्रूफ या प्लान",
+      "6 महीने का बैंक स्टेटमेंट"
+    ],
+    "apply": "Any bank, NBFC-MFI, or udyamimitra.in",
+    "notes": "No collateral. Interest depends on lender (usually 9-12%)."
+  },
+  {
+    "id": "mudra_kishore",
+    "name": "PM MUDRA - Kishore",
+    "hi_name": "पीएम मुद्रा - किशोर",
+    "for": "Growing micro businesses needing ₹50,001 to ₹5 lakh",
+    "for_hi": "बढ़ते छोटे कारोबार - ₹50,001 से ₹5 लाख तक",
+    "amount": "₹50,001 to ₹5,00,000",
+    "amount_hi": "₹50,001 से ₹5,00,000 तक",
+    "rules": {
+      "occupation": [
+        "shop",
+        "service",
+        "vendor",
+        "artisan",
+        "other_business"
+      ],
+      "min_age": 18,
+      "min_vintage_months": 6,
+      "min_loan": 50001,
+      "max_loan": 500000
+    },
+    "docs": [
+      "Aadhaar + PAN",
+      "Business address proof",
+      "Udyam registration",
+      "Bank statement 6-12 months",
+      "Last year turnover estimate"
+    ],
+    "docs_hi": [
+      "आधार + पैन",
+      "दुकान का पता प्रूफ",
+      "उद्यम रजिस्ट्रेशन",
+      "6-12 महीने का बैंक स्टेटमेंट"
+    ],
+    "apply": "Banks / NBFCs / udyamimitra.in",
+    "notes": "Collateral-free up to ₹10 lakh under CGTMSE cover."
+  },
+  {
+    "id": "kcc",
+    "name": "Kisan Credit Card",
+    "hi_name": "किसान क्रेडिट कार्ड",
+    "for": "Farmers - crop loans and allied activities",
+    "for_hi": "किसान - फसल और संबद्ध गतिविधियों के लिए",
+    "amount": "based on landholding and crop; typically ₹50,000 to ₹3 lakh",
+    "amount_hi": "ज़मीन और फसल के हिसाब से; आमतौर पर ₹50,000 से ₹3 लाख",
+    "rules": {
+      "occupation": [
+        "farmer"
+      ],
+      "min_age": 18,
+      "min_loan": 0,
+      "max_loan": 300000
+    },
+    "docs": [
+      "Aadhaar",
+      "Land records (khasra/khatauni) or sharecropper proof",
+      "Passport photo"
+    ],
+    "docs_hi": [
+      "आधार",
+      "ज़मीन के कागज़ात (खसरा/खतौनी)",
+      "फोटो"
+    ],
+    "apply": "Any public/private bank, cooperative bank, or PM-KISAN portal linkage",
+    "notes": "4% effective interest on prompt repayment (7% - 3% subvention) up to ₹3 lakh."
+  },
+  {
+    "id": "shg",
+    "name": "SHG - Bank Linkage (DAY-NRLM)",
+    "hi_name": "स्वयं सहायता समूह - बैंक लिंकेज",
+    "for": "Women in rural areas - join a self-help group for savings + credit",
+    "for_hi": "ग्रामीण महिलाएं - स्वयं सहायता समूह से बचत और लोन",
+    "amount": "Group-linked; individual share commonly ₹30,000 to ₹1 lakh over cycles",
+    "amount_hi": "समूह के माध्यम से; चक्रों में ₹30,000 से ₹1 लाख तक",
+    "rules": {
+      "gender": [
+        "female"
+      ],
+      "area": [
+        "rural"
+      ],
+      "min_age": 18,
+      "min_loan": 0,
+      "max_loan": 100000
+    },
+    "docs": [
+      "Aadhaar",
+      "SHG membership (or form a new group of 10-15 women)"
+    ],
+    "docs_hi": [
+      "आधार",
+      "समूह की सदस्यता (या 10-15 महिलाओं का नया समूह)"
+    ],
+    "apply": "Block office / Mission Shakti / nearest bank",
+    "notes": "Builds credit history as a group; 7% interest, additional subvention in 250 districts."
+  },
+  {
+    "id": "standup",
+    "name": "Stand-Up India",
+    "hi_name": "स्टैंड-अप इंडिया",
+    "for": "Women or SC/ST entrepreneurs starting a NEW enterprise (₹10 lakh to ₹1 crore)",
+    "for_hi": "महिला या SC/ST उद्यमी - नया कारोबार (₹10 लाख से ₹1 करोड़)",
+    "amount": "₹10,00,000 to ₹1,00,00,000",
+    "amount_hi": "₹10 लाख से ₹1 करोड़",
+    "rules": {
+      "min_age": 18,
+      "tags": [
+        "women_or_scst",
+        "new_enterprise"
+      ],
+      "min_loan": 1000000,
+      "max_loan": 10000000
+    },
+    "docs": [
+      "Aadhaar + PAN",
+      "Caste certificate if SC/ST",
+      "Project report",
+      "Udyam registration",
+      "Bank statements"
+    ],
+    "docs_hi": [
+      "आधार + पैन",
+      "जाति प्रमाण पत्र (SC/ST हो तो)",
+      "प्रोजेक्ट रिपोर्ट",
+      "उद्यम रजिस्ट्रेशन"
+    ],
+    "apply": "standupmitra.in or bank branch",
+    "notes": "For greenfield (first) enterprises only."
+  },
+  {
+    "id": "jandhan_od",
+    "name": "Jan Dhan overdraft",
+    "hi_name": "जन धन ओवरड्राफ्ट",
+    "for": "Jan Dhan account holders needing small emergency credit",
+    "for_hi": "जन धन खाताधारक - छोटी ज़रूरत के लिए",
+    "amount": "₹2,000 to ₹10,000 overdraft",
+    "amount_hi": "₹2,000 से ₹10,000 ओवरड्राफ्ट",
+    "rules": {
+      "min_age": 18,
+      "tags": [
+        "jandhan_account"
+      ],
+      "min_loan": 0,
+      "max_loan": 10000
+    },
+    "docs": [
+      "Jan Dhan account with 6 months satisfactory operation",
+      "Aadhaar"
+    ],
+    "docs_hi": [
+      "6 महीने पुराना जन धन खाता",
+      "आधार"
+    ],
+    "apply": "Your bank branch where the Jan Dhan account is",
+    "notes": "Small but instant; builds a credit footprint."
+  }
+]

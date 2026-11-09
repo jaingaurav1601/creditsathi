@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CreditSathi - live impact stats</title>
+<style>
+body { font-family:'Segoe UI', system-ui, sans-serif; background:#fff9f0; color:#1f2937; display:flex; flex-direction:column; align-items:center; padding:30px 16px; }
+h1 { color:#0b2a5b; font-size:22px; margin-bottom:4px; }
+.sub { color:#6b7280; font-size:13px; margin-bottom:24px; }
+.grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(160px,1fr)); gap:14px; max-width:820px; width:100%; }
+.kpi { background:#fff; border:1px solid #f0e2cd; border-radius:14px; padding:18px; text-align:center; box-shadow:0 1px 3px rgba(0,0,0,.05); }
+.kpi .v { font-size:30px; font-weight:800; color:#f4930a; }
+.kpi .l { font-size:13px; color:#6b7280; margin-top:4px; }
+table { margin-top:26px; border-collapse:collapse; background:#fff; border-radius:12px; overflow:hidden; }
+td, th { padding:10px 18px; border-bottom:1px solid #f0e2cd; font-size:14px; text-align:left; }
+th { background:#0b2a5b; color:#fff; }
+a { color:#0b2a5b; }
+</style>
+</head>
+<body>
+<h1>CreditSathi - live impact stats</h1>
+<div class="sub">Real usage, updated on every conversation. <a href="/">Back to the agent</a></div>
+<div class="grid" id="grid"></div>
+<table id="tbl" style="display:none"><tr><th>Scheme</th><th>Matches</th></tr></table>
+<script>
+fetch('/api/stats').then(r => r.json()).then(s => {
+  const kpis = [
+    ['Sessions', s.sessions], ['Conversations', s.chats], ['Profiles built', s.profilesBuilt],
+    ['Applications tracked', s.applicationsTracked], ['Tracker updates', s.trackerSteps],
+  ];
+  document.getElementById('grid').innerHTML = kpis.map(([l, v]) => `<div class="kpi"><div class="v">${v}</div><div class="l">${l}</div></div>`).join('');
+  const rows = Object.entries(s.schemeMatches || {});
+  if (rows.length) {
+    const t = document.getElementById('tbl');
+    t.style.display = '';
+    t.innerHTML = '<tr><th>Scheme</th><th>Matches</th></tr>' + rows.map(([k, v]) => `<tr><td>${k}</td><td>${v}</td></tr>`).join('');
+  }
+});
+</script>
+</body>
+</html>
